@@ -21,14 +21,14 @@ def send_welcome(message):
 def get_markup():
     keyboard_markup = InlineKeyboardMarkup(row_width=2)
     btn_1 = InlineKeyboardButton('Получить урок', callback_data="btn_get_lesson")
-    btn_2 = InlineKeyboardButton('Подписаться', url= "https://t.me/prvms_test", callback_data="btn_subscribe")
+    btn_2 = InlineKeyboardButton('Подписаться', url= config.TARGET_CHANNEL_URL, callback_data="btn_subscribe")
     keyboard_markup.add(btn_1, btn_2)
         
     return keyboard_markup
 
 def send_video(chat_id):
     url = '{api_url}/bot{token}/sendvideo'.format(token=config.TELEGRAM_TOKEN, api_url=config.API_URL)
-    resp = requests.post(url, data={'chat_id': chat_id, 'video': config.LESSON_VIDEO_ID, 'supports_streaming': True, 'width': 1686, 'height': 1080})
+    resp = requests.post(url, data={'chat_id': chat_id, 'video': config.LESSON_VIDEO_ID, 'supports_streaming': True, 'width': 1686, 'height': 1080, 'protect_content': True})
     
 def get_video_id(chat_id):
     with open('static/lesson.mov', 'rb') as video:
