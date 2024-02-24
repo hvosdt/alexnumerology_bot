@@ -4,7 +4,7 @@ import logging
 import requests
 import config
 import datetime
-from messages import START_MSG_1, START_MSG_2, LESSON_MSG, CHECK_FAIL_MSG, SUCCESS_MSG
+from messages import START_MSG_1, START_MSG_2, LESSON_MSG, CHECK_FAIL_MSG, SUCCESS_MSG, BROADCAST_MSG
 
 bot = telebot.TeleBot(config.TELEGRAM_TOKEN)
 
@@ -17,6 +17,17 @@ def send_welcome(message):
     with open('static/1.jpg', 'rb') as img:    
         bot.send_photo(message.from_user.id, img, START_MSG_1, parse_mode='HTML', reply_markup=keyboard_markup)
         #bot.send_message(message.from_user.id, START_MSG_2, reply_markup=keyboard_markup)
+
+@bot.message_handler(commands=[config.BROADCAST_CMD])
+def send_welcome(message):
+    keyboard_markup = InlineKeyboardMarkup(row_width=1)
+    btn_1 = InlineKeyboardButton('ПОДАРОК 🔢', url= 'https://t.me/alexnum_bot')
+    keyboard_markup.add(btn_1)
+    
+    #with open('static/1.jpg', 'rb') as img:    
+    #    bot.send_photo(config.TARGET_CHANNEL_ID, img, BROADCAST_MSG, parse_mode='HTML', reply_markup=keyboard_markup)
+    
+    bot.send_message(config.TARGET_CHANNEL_ID, BROADCAST_MSG, parse_mode='HTML', reply_markup=keyboard_markup)
 
 def get_markup():
     keyboard_markup = InlineKeyboardMarkup(row_width=2)
