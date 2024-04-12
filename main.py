@@ -79,5 +79,5 @@ def get_video_id(chat_id):
         return resp.json()['result']['video']['file_id']
 
 
-if __name__ == '__main__'        :
-    bot.infinity_polling()
+
+bot.infinity_polling()
