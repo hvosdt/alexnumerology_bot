@@ -1,0 +1,7 @@
+#setuptools==65.5.0
+#peewee==3.17.1
+#psycopg2==2.9.9
+#requests==2.31.0
+#peewee-db-evolve==3.7.6
+#telebot==0.0.5
+pyTelegramBotAPI==4.16.1
