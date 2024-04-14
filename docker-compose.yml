@@ -1,19 +1,6 @@
-version: "3.8"
+version: "2"
 
 services:
-  db:
-    image: postgres:14
-    container_name: alexnum_postgres
-    restart: always
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    env_file:
-      - ./.env
-    ports:
-      - "5433:5432"
   bot:
     build:
       context: .
@@ -22,9 +9,4 @@ services:
     restart: always
     command: python main.py
     volumes:
-      - .:/code
-    env_file:
-      - ./.env  
-
-volumes:
-  postgres_data:
+      - .:/app
